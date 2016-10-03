@@ -14,8 +14,8 @@ make test
 
 # CONFIGURATION
 
-config.xml --- server and clients configuration
-Source/client.py --- secret key for client-server encryption
+- config.xml --- server and clients configuration
+- Source/client.py --- secret key for client-server encryption
 
 
 # RUNNING
