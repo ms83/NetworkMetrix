@@ -1,0 +1,57 @@
+<config>
+    <!-- Verbosity -->
+    <loglevel>INFO</loglevel>
+
+    <!-- A script to call on remote machine -->
+    <script>client.py</script>
+
+    <!-- Database configuration to populate with metrics -->
+    <database>../metrics.db</database>
+
+    <!-- How many clients should be executed in parallel -->
+    <concurrency>5</concurrency>
+
+    <!-- Settings for mail alerts -->
+    <smtp>
+        <returnpath>no-reply@networkmetrix.com</returnpath>
+        <envelope>Network Metrix</envelope>
+        <hostname>127.0.0.1</hostname>
+        <port>25</port>
+        <tls>
+            <login></login>
+            <password></password>
+        </tls>
+        <ssl>
+            <cert></cert>
+            <key></key>
+        </ssl>
+    </smtp>
+    
+    <!-- Default values which will be set to all clients. Each client can override any setting -->
+    <default>
+        <target>/tmp</target>
+        <mail>alerts@networkmetrix.com</mail>
+        <python>/usr/bin/env python</python>
+        <port>22</port>
+        <username>networkmetrix</username>
+        <password>8mJk()32mkXz!g</password>
+
+        <alert type="mem_percent" limit="95" condition="gt"/>
+        <alert type="cpu_percent" limit="98" condition="gt"/>
+        <alert type="uptime_sec" limit="360" condition="lt"/>
+    </default>
+
+    <!-- List of clients -->
+    <client ip="192.168.1.3" />
+
+    <client ip="192.168.1.4" />
+
+    <client ip="192.168.1.5">
+        <alert type="mem_percent" limit="65" condition="gt" />
+        <alert type="cpu_percent" limit="35" condition="gt" />
+    </client>
+
+    <client ip="192.168.1.6" mail="cto@networkmetrix.com" target="/var/tmp" />
+
+    <client ip="127.0.0.1" username="crossout" python="/usr/local/bin/python3" />
+</config>
